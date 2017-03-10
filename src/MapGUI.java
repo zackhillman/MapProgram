@@ -5,6 +5,8 @@ public class MapGUI extends GBFrame{
 
 	private JButton add;
 	private JButton issue;
+	private JButton checkout;
+	private JButton returnBook;
 	private JButton books;
 	private JButton isbn;
 	private JButton names;
@@ -18,6 +20,8 @@ public class MapGUI extends GBFrame{
 		
 		add = addButton("Add",1,1,1,1);
 		issue = addButton("Issue",1,2,1,1);
+		checkout = addButton("Checkout",1,3,1,1);
+		returnBook = addButton("Return",1,4,1,1);
 		books = addButton("Books",5,1,1,1);
 		isbn = addButton("ISBN",5,2,1,1);
 		names = addButton("Names",5,3,1,1);
