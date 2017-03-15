@@ -16,6 +16,8 @@ public class MapGUI extends GBFrame{
 	
 	private JTextArea output;
 	
+	private Library library;
+	
 	public MapGUI(){
 		
 		add = addButton("Add",1,1,1,1);
@@ -34,16 +36,34 @@ public class MapGUI extends GBFrame{
 		setSize(600,300);
 		setVisible(true);
 		
+		library = new Library();
 	}
 	/**
 	 * This method is called when a button is clicked
 	 */
 	public void buttonClicked(JButton buttonObj){
 		if(buttonObj == add){
-			
+			library.addBook(new BookBox(this).getBook());
 		}else if(buttonObj == issue){
-			
+			library.addCard(new CardBox(this).getCard());
+		}else if(buttonObj == checkout){
+			OutBox tempDialog = new OutBox(this);
+			library.checkout(tempDialog.getNumber(),tempDialog.getIsbn());
+		}else if(buttonObj == returnBook){
+			ReturnBox tempDialog = new ReturnBox(this);
+			library.checkout(tempDialog.getNumber(),tempDialog.getIsbn());
+		}else if(buttonObj == books){
+			output.setText(library.alphabetizeBooks());
+		}else if(buttonObj == isbn){
+			output.setText(library.getIsbns());
+		}else if(buttonObj == names){
+			output.setText(library.alphabetizeCards());
+		}else if(buttonObj == cards){
+			output.setText(library.getCardNumbers());
+		}else if(buttonObj == tbooks){
+			output.setText(library.getBooksOut());
 		}else if(buttonObj == reset){
+			
 			this.dispose();
 			new MapGUI();	
 		}

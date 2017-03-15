@@ -1,7 +1,7 @@
 import BreezySwing.*;
 import javax.swing.*;
 
-public class dialogBox extends GBDialog{
+public class BookBox extends GBDialog{
 
 	private JLabel inputL;
 	private JTextField isbnF;
@@ -11,7 +11,9 @@ public class dialogBox extends GBDialog{
 	private JButton ok;
 	private JButton cancel;
 	
-	public dialogBox(JFrame f, Book bk) {
+	private Book book;
+	
+	public BookBox(JFrame f) {
 		super(f);
 		
 		inputL = addLabel("Input (ISBN, Title, Author):",1,1,2,1);
@@ -29,10 +31,15 @@ public class dialogBox extends GBDialog{
 	
 	public void buttonClicked(JButton b){
 		if(b == ok){
-			bk = new Book()
+			book = new Book(isbnF.getText(),titleF.getText(),authorF.getText());
+			dispose();
 		}else if(b == cancel){
-			
+			dispose();
 		}
+	}
+	
+	public Book getBook(){
+		return book;
 	}
 
 	
