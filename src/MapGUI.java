@@ -3,21 +3,26 @@ import javax.swing.*;
 
 public class MapGUI extends GBFrame{
 
-	private JButton add;
-	private JButton issue;
-	private JButton checkout;
-	private JButton returnBook;
-	private JButton books;
-	private JButton isbn;
-	private JButton names;
-	private JButton cards;
-	private JButton tbooks;
-	private JButton reset;
+	private JButton add; //Adds book to library
+	private JButton issue; //Adds card to library
+	private JButton checkout; //Checks out a book from the library
+	private JButton returnBook; //Returns book to library
+	private JButton books; //Prints list of titles
+	private JButton isbn; //Prints list of ISBNs
+	private JButton names; //Prints list of names
+	private JButton cards; //Prints list of cards
+	private JButton tbooks; //Prints list of books out
+	private JButton reset; //Resets the GUI
+	private JButton clear; //Clear the files
 	
-	private JTextArea output;
+	private JTextArea output; //Where it is outputted
 	
-	private Library library;
+	private Library library; //Tracks the library
 	
+	/**
+	 * This is the constructor method. It instantiates
+	 * the instance variables
+	 */
 	public MapGUI(){
 		
 		add = addButton("Add",1,1,1,1);
@@ -32,6 +37,7 @@ public class MapGUI extends GBFrame{
 		reset = addButton("Reset",1,5,1,1);
 		
 		output= addTextArea("",2,1,5,3);
+		clear = addButton("Clear",5,3,1,1);
 		
 		setSize(600,300);
 		setVisible(true);
@@ -47,10 +53,10 @@ public class MapGUI extends GBFrame{
 		}else if(buttonObj == issue){
 			library.addCard(new CardBox(this).getCard());
 		}else if(buttonObj == checkout){
-			OutBox tempDialog = new OutBox(this);
+			IOBox tempDialog = new IOBox(this);
 			library.checkout(tempDialog.getNumber(),tempDialog.getIsbn());
 		}else if(buttonObj == returnBook){
-			ReturnBox tempDialog = new ReturnBox(this);
+			IOBox tempDialog = new IOBox(this);
 			library.checkout(tempDialog.getNumber(),tempDialog.getIsbn());
 		}else if(buttonObj == books){
 			output.setText(library.alphabetizeBooks());
@@ -62,6 +68,8 @@ public class MapGUI extends GBFrame{
 			output.setText(library.getCardNumbers());
 		}else if(buttonObj == tbooks){
 			output.setText(library.getBooksOut());
+		}else if(buttonObj == clear){
+			library.clear();
 		}else if(buttonObj == reset){
 			
 			this.dispose();

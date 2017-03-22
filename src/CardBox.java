@@ -3,15 +3,18 @@ import javax.swing.*;
 
 public class CardBox extends GBDialog{
 
-	private JLabel inputL;
-	private JTextField nameF;
-	private IntegerField numberF;
+	private JLabel inputL; //Tells the user what to input
+	private JTextField nameF; //Where the user inputs the name
+	private IntegerField numberF; //Where the user inputs the number
 	
-	private JButton ok;
-	private JButton cancel;
+	private JButton ok; //This button accepts and inputs the card
+	private JButton cancel; //This button cancels
 	
-	private LibraryCard card;
-	
+	private LibraryCard card; //This tracks the inputted card
+	/**
+	 * This is the constructor method. It instantiates
+	 * the instance variables
+	 */
 	public CardBox(JFrame f) {
 		super(f);
 		
@@ -26,7 +29,9 @@ public class CardBox extends GBDialog{
 		setVisible(true);
 		
 	}
-	
+	/**
+	 * This method is called when a button is clicked
+	 */
 	public void buttonClicked(JButton b){
 		if(b == ok){
 			card = new LibraryCard(numberF.getNumber(),nameF.getText());
@@ -35,7 +40,10 @@ public class CardBox extends GBDialog{
 			dispose();
 		}
 	}
-	
+	/**
+	 * This method gets the card
+	 * @return- returns the inputted card
+	 */
 	public LibraryCard getCard(){
 		return card;
 	}

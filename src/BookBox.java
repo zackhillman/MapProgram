@@ -3,16 +3,19 @@ import javax.swing.*;
 
 public class BookBox extends GBDialog{
 
-	private JLabel inputL;
-	private JTextField isbnF;
-	private JTextField titleF;
-	private JTextField authorF;
+	private JLabel inputL; //Tells you where to input the isbn, title & author
+	private JTextField isbnF; //Where the user inputs ISBN
+	private JTextField titleF; //Where the user inputs Title
+	private JTextField authorF; //Where the user inputs Author
 	
-	private JButton ok;
-	private JButton cancel;
+	private JButton ok; //User accepts input
+	private JButton cancel; //user declines input
 	
-	private Book book;
-	
+	private Book book; //Tracks the inputted book
+	/**
+	 * This is the constructor method. It instantiates
+	 * the instance variables
+	 */
 	public BookBox(JFrame f) {
 		super(f);
 		
@@ -28,7 +31,9 @@ public class BookBox extends GBDialog{
 		setVisible(true);
 		
 	}
-	
+	/**
+	 * This method is called when a button is clicked
+	 */
 	public void buttonClicked(JButton b){
 		if(b == ok){
 			book = new Book(isbnF.getText(),titleF.getText(),authorF.getText());
@@ -37,7 +42,10 @@ public class BookBox extends GBDialog{
 			dispose();
 		}
 	}
-	
+	/**
+	 * This method gets the book
+	 * @return- the inputted book
+	 */
 	public Book getBook(){
 		return book;
 	}
