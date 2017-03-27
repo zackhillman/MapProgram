@@ -25,7 +25,7 @@ public class Library {
 	 */
 	public void addBook(Book b){
 		books.put(b.getIsbn(),b);
-		save();
+		
 	}
 	/**
 	 * This method adds a card to the library
@@ -33,29 +33,45 @@ public class Library {
 	 */
 	public void addCard(LibraryCard c){
 		libraryCards.put(c.getNumber(), c);
-		save();
+		
 	}
 	/**
 	 * This method checks out a book from the library
 	 * @param num- the card numbers
 	 * @param isbn- the ISBN of the book
 	 */
-	public void checkout(int num, String isbn){
+	public String checkout(int num, String isbn){
 		Book b = books.get(isbn);
+		if (b==null)
+			return "Book does not exist";
+		if(!b.getBorrower().equals(""))
+			return "Book is out";
 		LibraryCard c =  libraryCards.get(num);
+		if (c==null)
+			return "Card does not exist";
 		b.setBorrower(c.getName());
 		c.checkOut(b);
+		
+		return "";
 	}
 	/**
 	 * This method returns a book to the library
 	 * @param num- the card numbers
 	 * @param isbn- the ISBN of the book
 	 */
-	public void returnBook(int num, String isbn){
+	public String returnBook(int num, String isbn){
 		Book b = books.get(isbn);
+		if (b==null)
+			return "Book does not exist";
+		if(b.getBorrower().equals(""))
+			return "Book is in";
 		LibraryCard c =  libraryCards.get(num);
+		if (c==null)
+			return "Card does not exist";
 		b.setBorrower("");
 		c.returnBook(b);
+		
+		return "";
 		
 	}
 	/**
@@ -111,13 +127,15 @@ public class Library {
 	public void clear(){
 		(new File("bookfile.dat")).delete();
 		(new File("cardholders.dat")).delete();
+		books = new HashMap<String,Book>();	
+		libraryCards = new HashMap<Integer,LibraryCard>();
 	}
 	
 	/**
 	 * This method writes an object to file
 	 * @param o - the object to write onto the file
 	 */
-	private void save() {
+	public void save() {
 		try {
 			FileOutputStream BookFile = new FileOutputStream("bookfile.dat");
 			FileOutputStream CardHolders = new FileOutputStream("cardholders.dat");

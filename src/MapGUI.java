@@ -33,11 +33,11 @@ public class MapGUI extends GBFrame{
 		isbn = addButton("ISBN",5,2,1,1);
 		names = addButton("Names",5,3,1,1);
 		cards = addButton("Card #s",5,4,1,1);
-		tbooks = addButton("All Books",5,5,1,1);
+		tbooks = addButton("Out Books",5,5,1,1);
 		reset = addButton("Reset",1,5,1,1);
 		
 		output= addTextArea("",2,1,5,3);
-		clear = addButton("Clear",5,3,1,1);
+		clear = addButton("Clear",6,3,1,1);
 		
 		setSize(600,300);
 		setVisible(true);
@@ -54,10 +54,10 @@ public class MapGUI extends GBFrame{
 			library.addCard(new CardBox(this).getCard());
 		}else if(buttonObj == checkout){
 			IOBox tempDialog = new IOBox(this);
-			library.checkout(tempDialog.getNumber(),tempDialog.getIsbn());
+			output.setText(library.checkout(tempDialog.getNumber(),tempDialog.getIsbn()));
 		}else if(buttonObj == returnBook){
 			IOBox tempDialog = new IOBox(this);
-			library.checkout(tempDialog.getNumber(),tempDialog.getIsbn());
+			output.setText(library.returnBook(tempDialog.getNumber(),tempDialog.getIsbn()));
 		}else if(buttonObj == books){
 			output.setText(library.alphabetizeBooks());
 		}else if(buttonObj == isbn){
@@ -71,7 +71,7 @@ public class MapGUI extends GBFrame{
 		}else if(buttonObj == clear){
 			library.clear();
 		}else if(buttonObj == reset){
-			
+			library.save();
 			this.dispose();
 			new MapGUI();	
 		}

@@ -18,7 +18,7 @@ public class Book implements Serializable{
 		isbn = i;
 		title = t;
 		author = a;
-		borrower = null;
+		borrower = "";
 	}
 	
 	/**
